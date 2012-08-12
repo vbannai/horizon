@@ -39,6 +39,7 @@ class CreateFlavor(forms.SelfHandlingForm):
     memory_mb = forms.IntegerField(label=_("Memory MB"))
     disk_gb = forms.IntegerField(label=_("Root Disk GB"))
     eph_gb = forms.IntegerField(label=_("Ephemeral Disk GB"))
+    disk_qos = forms.IntegerField(label=_("Disk QoS"))
 
     def handle(self, request, data):
         try:
@@ -48,7 +49,8 @@ class CreateFlavor(forms.SelfHandlingForm):
                                        data['vcpus'],
                                        data['disk_gb'],
                                        data['flavor_id'],
-                                       ephemeral=data['eph_gb'])
+                                       ephemeral=data['eph_gb'],
+                                       disk_qos=data['disk_qos'])
             msg = _('%s was successfully added to flavors.') % data['name']
             messages.success(request, msg)
             return flavor

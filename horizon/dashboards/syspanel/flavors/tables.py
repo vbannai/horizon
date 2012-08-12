@@ -38,6 +38,7 @@ class FlavorsTable(tables.DataTable):
     disk = tables.Column('disk', verbose_name=_('Root Disk'))
     ephemeral = tables.Column('OS-FLV-EXT-DATA:ephemeral',
                               verbose_name=_('Ephemeral Disk'))
+    disk_qos = tables.Column('disk_qos', verbose_name=_('Disk QoS'))
 
     class Meta:
         name = "flavors"
